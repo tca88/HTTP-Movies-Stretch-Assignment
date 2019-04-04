@@ -23,6 +23,20 @@ export default class MovieList extends Component {
       });
   }
 
+  addMovies = newMovie => {
+    axios
+      .post("http://localhost:5000/api/movies", newMovie)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div className="movie-list">
